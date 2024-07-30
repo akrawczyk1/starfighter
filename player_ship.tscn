@@ -1,24 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1qsyrcwu6e5y"]
 
 [ext_resource type="Script" path="res://PlayerShip.gd" id="1_x03ns"]
-[ext_resource type="Texture2D" uid="uid://itn6nib5j3rf" path="res://art/asteroids-2x.png" id="2_otldi"]
+[ext_resource type="Texture2D" uid="uid://bnoifvern12vl" path="res://art/asteroids.png" id="2_tcgyg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7blj"]
-atlas = ExtResource("2_otldi")
-region = Rect2(196, 256, 98, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x52ic"]
+atlas = ExtResource("2_tcgyg")
+region = Rect2(98, 128, 49, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aabp4"]
-atlas = ExtResource("2_otldi")
-region = Rect2(294, 256, 98, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh6tw"]
+atlas = ExtResource("2_tcgyg")
+region = Rect2(147, 128, 49, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u5fbx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v7blj")
+"texture": SubResource("AtlasTexture_x52ic")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aabp4")
+"texture": SubResource("AtlasTexture_kh6tw")
 }],
 "loop": true,
 "name": &"default",
@@ -26,18 +26,23 @@ animations = [{
 }]
 
 [node name="PlayerShip" type="Node2D"]
-position = Vector2(815, 498)
 script = ExtResource("1_x03ns")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-25.3333, -16)
+scale = Vector2(1.06122, 1)
 sprite_frames = SubResource("SpriteFrames_u5fbx")
 frame_progress = 0.0749673
+centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-2, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(2, 0)
+position = Vector2(-0.155171, 1.07292)
+scale = Vector2(0.538793, 0.572917)
 build_mode = 1
 polygon = PackedVector2Array(33, -3, -22, -19, -25, -15, -14, -7, -14, 5, -24, 12, -22, 17)
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true

@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet = preload("res://bullet.tscn")
+const bullet = preload("res://bullet.tscn")
 
 #Configurations
 const SCREEN_BUFFERZONE = 50
@@ -56,7 +56,15 @@ func handle_screenwrap() -> void:
 		position.y = screen_size.y + SCREEN_BUFFERZONE
 	
 func handle_bullet() -> void:
-	if Input.is_action_pressed("fire"):
-		pass
+	if Input.is_action_pressed("fire") && $ShootTimer.is_stopped():
+		$ShootTimer.start()		
+		var bullet_velocity = velocity + Vector2(1, 0).rotated(rotation).normalized() * 1000
+		var new_bullet = bullet.instantiate()
+		new_bullet.set_initial_params(bullet_velocity, position + Vector2(20, 0).rotated(rotation))
+		get_tree().root.add_child(new_bullet)
+		
+		
+		
+		
 		
 		
