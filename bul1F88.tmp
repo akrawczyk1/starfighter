@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://niifiee6kp2e"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_klfnk"]
+[ext_resource type="Texture2D" uid="uid://bnoifvern12vl" path="res://art/asteroids.png" id="1_rjbpf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ebaus"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_urvmy"]
+radius = 0.84853
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w22wd"]
+atlas = ExtResource("1_rjbpf")
+region = Rect2(225, 144, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhdnh"]
+atlas = ExtResource("1_rjbpf")
+region = Rect2(240, 144, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v7h3f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w22wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhdnh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Area2D"]
+material = SubResource("CanvasItemMaterial_ebaus")
+script = ExtResource("1_klfnk")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_urvmy")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v7h3f")
+
+[node name="KillTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

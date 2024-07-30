@@ -1,5 +1,7 @@
 extends Node2D
 
+var bullet = preload("res://bullet.tscn")
+
 #Configurations
 const SCREEN_BUFFERZONE = 50
 @export var accel : float = 4.0
@@ -22,6 +24,7 @@ func _process(delta):
 	
 	handle_movement(delta)
 	handle_screenwrap()
+	handle_bullet()
 	
 
 		
@@ -52,3 +55,8 @@ func handle_screenwrap() -> void:
 	if position.y < 0 - SCREEN_BUFFERZONE:
 		position.y = screen_size.y + SCREEN_BUFFERZONE
 	
+func handle_bullet() -> void:
+	if Input.is_action_pressed("fire"):
+		pass
+		
+		
